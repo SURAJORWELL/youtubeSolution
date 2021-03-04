@@ -1,5 +1,41 @@
 /*
 268 Missing Number Leetcode
-
+Problem link: https://leetcode.com/problems/missing-number/
 
 */
+
+class Solution {
+    public int missingNumber(int[] nums) 
+    {       
+        boolean[] flag = new boolean[len+1];
+        for(int num : nums)
+        {
+            flag[num]=true;
+        }
+        for(int i=0;i<len+1;i++)
+        {
+            if(!flag[i])
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+// Method 2:
+
+class Solution {
+    public int missingNumber(int[] nums) 
+    {
+        int len = nums.length;
+        int sum = len*(len+1)/2;
+        int sum_ar=0;
+        for(int num : nums)
+        {
+            sum_ar += num;
+        }                
+        return sum-sum_ar;
+        
+    }
+}
