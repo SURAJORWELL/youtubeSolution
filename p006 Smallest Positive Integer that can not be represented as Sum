@@ -1,1 +1,35 @@
 
+/*
+gfg link -https://practice.geeksforgeeks.org/batch/30-days-of-code-1
+
+day 3
+
+Smallest Positive Integer that can not be represented as Sum
+Given an array of size N, find the smallest positive integer value that cannot be represented as sum of some elements from the array.
+Example 1:
+
+Input: 
+N = 6
+array[] = {1, 10, 3, 11, 6, 15}
+Output: 
+2
+Explanation:
+2 is the smallest integer value that cannot 
+be represented as sum of elements from the array.
+*/
+
+long smallestpositive(long[] array, int n){ 
+        Arrays.sort(array);
+        //next is the next number
+        long next=1;
+        
+        for(long i:array)
+        {
+            if(i<= next)
+                next += i;
+            
+            else
+                break;
+        }
+    return next;
+    }
