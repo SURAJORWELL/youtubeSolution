@@ -1,0 +1,90 @@
+/*
+Given a matrix of size N x M. You have to find the Kth element which will obtain while traversing the matrix spirally starting from the top-left corner of the matrix.
+
+Example 1:
+
+Input: 
+N = 3, M = 3, K = 4
+A[] = {{1, 2, 3}, 
+       {4, 5, 6}, 
+       {7, 8, 9}}
+Output: 
+6
+Explanation: Spiral traversal of matrix: 
+{1, 2, 3, 6, 9, 8, 7, 4, 5}. Fourth element
+is 6.
+Example 2:
+
+Input: 
+N = 2, M = 2, K = 2 
+A[] = {{1, 2},
+       {3, 4}} 
+Output: 
+2
+Explanation: Spiral traversal of matrix: 
+{1, 2, 4, 3}. Second element is 2.
+*/
+
+//solution
+
+public int findK(int a[][], int n, int m, int k)
+	{
+
+int top=0,down=n-1,right=m-1,left=0,l=0;
+int side =0;
+
+if(k==0)
+{
+return -1;
+}
+    while(top<=down && left<=right)
+    {
+        
+        if(side==0)
+        {
+            for(int i=left;i<=right;i++)
+            {
+                l++;
+                if(l==k) 
+                    return a[top][i];
+            }
+            top++;
+        }
+        if(side==1)
+        {
+            for(int i=top;i<=down;i++)
+            {
+                l++;
+                if(l==k) 
+                    return a[i][right];
+            }
+            right--;
+        }
+        
+        if(side==2)
+        {
+            for(int i=right;i>=left;i--)
+            {
+                l++;
+                if(l==k) 
+                    return a[down][i];
+            }
+            down--;
+        }
+        
+        if(side==3)
+        {
+            for(int i=down;i>=top;i--)
+            {
+                l++;
+               // System.out.println(left);
+                if(l==k) 
+                    return a[left][i];
+            }
+            //System.out.println(left);
+            left++;
+        }
+        side=(side + 1) % 4;
+    }
+return -1;
+	}
